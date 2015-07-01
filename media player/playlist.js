@@ -8,16 +8,16 @@
 
 //renderInElment - to output the entire list and current songs
 
-function Playlist(){
+function Playlist() {
   this.songs = [];
   this.currentSongIndex = 0;
 }
 
-Playlist.prototype.add = function(song){
+Playlist.prototype.add = function(song) {
   this.songs.push(song);
 };
 
-Playlist.prototype.play = function(){
+Playlist.prototype.play = function() {
 
   var currentSong = this.songs[this.currentSongIndex];
 
@@ -25,7 +25,7 @@ Playlist.prototype.play = function(){
 
 };
 
-Playlist.prototype.stop = function(){
+Playlist.prototype.stop = function() {
 
   var currentSong = this.songs[this.currentSongIndex];
 
@@ -33,16 +33,16 @@ Playlist.prototype.stop = function(){
 
 };
 
-Playlist.prototype.next = function(){
+Playlist.prototype.next = function() {
 
   //stop current song - calls stop on the song using the song prototype stop()
   this.stop();
 
   //add +1 to go to next song in array
-  this.currentSongIndex ++;
+  this.currentSongIndex++;
 
   //if its the last song repeat the array
-  if(this.currentSongIndex === this.songs.length){
+  if (this.currentSongIndex === this.songs.length) {
     this.currentSongIndex = 0;
   }
 
@@ -51,14 +51,12 @@ Playlist.prototype.next = function(){
 
 };
 
-Playlist.prototype.renderInElement = function(){
+Playlist.prototype.renderInElement = function() {
   var list = '';
-  for(var i=0; i < this.songs.length; i++){
-    list+= this.songs[i].toHTML();
+  for (var i = 0; i < this.songs.length; i++) {
+    list += this.songs[i].toHTML();
   }
 
   //var currentSong = this.songs[this.currentSongIndex];
   return list;
 };
-
-

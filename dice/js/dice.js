@@ -1,5 +1,3 @@
-
-
 //var dice = new Dice(6);
 
 
@@ -7,25 +5,50 @@
 
 var diceObjectLiteral = {
   sides: 6,
-  roll: function (){
+  roll: function() {
     var randomNumber = Math.floor(Math.random() * this.sides) + 1;
-      return randomNumber;
-    }
-  };
+    return randomNumber;
+  }
+};
 
 
 //constructor function example
-function Dice(sides){
+function Dice2(sides) {
 
   this.sides = sides;
 
 }
 
-//create new instance
-var dice = new Dice(6);
+
 
 //methods with prototypes
-Dice.prototype.roll = function(){
+Dice2.prototype.roll = function() {
   var randomNumber = Math.floor(Math.random() * this.sides) + 1;
   return randomNumber;
 };
+
+
+//new constructor snippet example
+var Dice = (function() {
+  'use strict';
+
+  function Dice(sides) {
+    this.sides = sides;
+    // enforces new
+    if (!(this instanceof Dice)) {
+      return new Dice();
+    }
+
+    // constructor body
+  }
+
+  Dice.prototype.roll = function() {
+    var randomNumber = Math.floor(Math.random() * this.sides) + 1;
+    return randomNumber;
+  };
+
+  return Dice;
+}());
+
+//create new instance
+var dice = new Dice(6);

@@ -9,33 +9,54 @@
 
 
 //song constructor function
-function Song(title, artist, duration){
-  this.title = title;
-  this.artist = artist;
-  this.duration = duration;
-  this.isPlaying = false;
-}
+// function Song(title, artist, duration) {
+//   Media.call(this, title, duration);
+//   this.artist = artist;
+// }
 
-Song.prototype.play = function(){
-  this.isPlaying = true;
-};
+//inits the prototype chain
+// Song.prototype = Object.create(Media.prototype);
 
-Song.prototype.stop = function(){
-  this.isPlaying = false;
-};
+//DELETED THESE SINCE THEY ARE ADDED VIA THE MEDIA OBJCET
+// Song.prototype.play = function(){
+//   this.isPlaying = true;
+// };
+//
+// Song.prototype.stop = function(){
+//   this.isPlaying = false;
+// };
 
-Song.prototype.toHTML = function(){
-  var renderToHtml = '';
-  renderToHtml += "<li";
-  if(this.isPlaying){
-    renderToHtml += " class='current' ";
+var Song = (function() {
+  'use strict';
+
+  function Song(title, artist, duration) {
+    // enforces new
+    if (!(this instanceof Song)) {
+      return new Song();
+    }
+
+    Media.call(this, title, duration);
+
+    this.artist = artist;
   }
 
-  renderToHtml += '>';
-  renderToHtml += this.title + ' - ' + this.artist;
-  renderToHtml += '<span class="duration">' + this.duration + '</span>';
-  renderToHtml += '</li>';
+  Song.prototype = Object.create(Media.prototype);
 
-  return renderToHtml;
+  Song.prototype.toHTML = function() {
 
-};
+    var renderToHtml = '';
+    renderToHtml += "<li";
+    if (this.isPlaying) {
+      renderToHtml += " class='current' ";
+    }
+
+    renderToHtml += '>';
+    renderToHtml += this.title + ' - ' + this.artist;
+    renderToHtml += '<span class="duration">' + this.duration + '</span>';
+    renderToHtml += '</li>';
+
+    return renderToHtml;
+  };
+
+  return Song;
+}());

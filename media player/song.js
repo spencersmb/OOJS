@@ -57,6 +57,5 @@ var Song = (function() {
 
     return renderToHtml;
   };
-
   return Song;
 }());
